@@ -33,10 +33,13 @@ def arithmetic_arranger(problems, show_answer=False):
         # Construct the sorted problem string
         sorting_problem += f"{first_number.strip()} {operator} {second_number.strip()}\n"
 
+        # Max length of the "----" row 3
+        max_length = max(len(first_number), len(second_number))
+
         # Sorting the formats
-        row1 += first_number.rjust(5) + '    '
-        row2 += operator + second_number.rjust(4) + '    '
-        row3 += '-' * 5 + '    '
+        row1 += first_number.rjust(max_length + 2) + '    '
+        row2 += operator + second_number.rjust(max_length + 1) + '    '
+        row3 += '-' * (max_length + 2) + '    '
 
         # Calculate the result of the arithmetic if show_answer is True
         if show_answer == True:
@@ -49,9 +52,10 @@ def arithmetic_arranger(problems, show_answer=False):
             row4 = ''
     
     # Combine the rows
-    sorting_problem = '\n'.join([row1.rstrip(), row2.rstrip(), row3.rstrip(), row4.rstrip()])
+    sorting_problem = row1.rstrip() + '\n' + row2.rstrip() + '\n' + row3.rstrip() + '\n' + row4.rstrip()
     
     # Return the arranged problems
     return sorting_problem
 
-print(arithmetic_arranger(["32-698", "3801-2", "45+43", "123 +49", "32-698"], show_answer=False))
+print(arithmetic_arranger(["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"]))
+#print(str("  11      3801      1      123         1\n+  4    - 2999    + 2    +  49    - 9380\n----    ------    ---    -----    ------."))
